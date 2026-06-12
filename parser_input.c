@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 02:01:36 by kai               #+#    #+#             */
-/*   Updated: 2026/06/09 21:34:51 by kai              ###   ########.fr       */
+/*   Updated: 2026/06/13 00:53:04 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 // 3. Safe conversion + range check
 // Covers:
 // Safe conversion (detect overflow, reject partial parsing)
-// Range validity (INT_MIN / INT_MAX) 
+// Range validity (INT_MIN / INT_MAX)
 // Normalization (e.g. +0, -0, 000123)
 // 4. Duplicate detection
 // Covers:
@@ -41,7 +41,6 @@
 // Calls all steps in order
 // Loops through tokens
 // Builds final integer array
-
 
 char	**input_split_and_flatten(int argc, char **argv)
 {
@@ -59,55 +58,55 @@ char	**input_split_and_flatten(int argc, char **argv)
 }
 
 //(rewrite later)
-int check_array_and_dup(char **flat_array)
+int	check_array_and_dup(char **flat_array)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (flat_array[i] != NULL)
-    {
-        if (!is_valid_int(flat_array[i]))
-        {
-            free_flat_array(flat_array);
-            error_exit();
-        }
-        j = 0;
-        while (j < i)
-        {
-            if (ft_atoi(flat_array[i]) == ft_atoi(flat_array[j]))
-            {
-                free_flat_array(flat_array);
-                error_exit();
-            }
-            j++;
-        }
-        i++;
-    }
-    return (1);
+	i = 0;
+	while (flat_array[i] != NULL)
+	{
+		if (!is_valid_int(flat_array[i]))
+		{
+			free_flat_array(flat_array);
+			error_exit();
+		}
+		j = 0;
+		while (j < i)
+		{
+			if (ft_atoi(flat_array[i]) == ft_atoi(flat_array[j]))
+			{
+				free_flat_array(flat_array);
+				error_exit();
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
-t_node *build_doubly_stack(char **flat_array)
+t_node	*build_doubly_stack(char **flat_array)
 {
-    t_node *stack_a;
-    t_node *new_node;
-    int     i;
+	t_node	*stack_a;
+	t_node	*new_node;
+	int		i;
 
-    stack_a = NULL;
-    i = 0;
-    while (flat_array[i] != NULL)
-    {
-        new_node = lst_new(ft_atoi(flat_array[i]));
-        if (!new_node)
-        {
-            free_stack(&stack_a); 
-            free_flat_array(flat_array);
-            error_exit();
-        }
-        lst_add_back(&stack_a, new_node);
-        i++;
-    }
-    return (stack_a);
+	stack_a = NULL;
+	i = 0;
+	while (flat_array[i] != NULL)
+	{
+		new_node = lst_new(ft_atoi(flat_array[i]));
+		if (!new_node)
+		{
+			free_stack(&stack_a);
+			free_flat_array(flat_array);
+			error_exit();
+		}
+		lst_add_back(&stack_a, new_node);
+		i++;
+	}
+	return (stack_a);
 }
 
 // int	safe_convert(const char *str, int *error_flag)
@@ -129,7 +128,7 @@ t_node *build_doubly_stack(char **flat_array)
 // 	while (str[i] >= '0' && str[i] <= '9')
 // 	{
 // 		result = result * 10 + (str[i++] - '0');
-// 		if ((sign == 1 && result > INT_MAX) 
+// 		if ((sign == 1 && result > INT_MAX)
 // 			|| (sign == -1 && (-result) < INT_MIN))
 // 			return (0);
 // 	}
@@ -157,7 +156,7 @@ t_node *build_doubly_stack(char **flat_array)
 // 		if (str[i] < '0' || str[i] > '9')
 // 			return (0);
 // 		result = result * 10 + (str[i++] - '0');
-// 		if ((sign == 1 && result > INT_MAX) 
+// 		if ((sign == 1 && result > INT_MAX)
 // 			|| (sign == -1 && (-result) < INT_MIN))
 // 			return (0);
 // 	}

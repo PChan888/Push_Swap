@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 00:21:10 by kaichan           #+#    #+#             */
-/*   Updated: 2026/06/06 01:29:16 by kai              ###   ########.fr       */
+/*   Updated: 2026/06/13 01:03:45 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int main(int argc, char **argv)
 	// fill stack_a with the valid integers. If there is any error during
 	// parsing (like invalid input), it will return false, and we will print
 	// "Error" to stderr and exit with a non-zero status.
-	if (!parse_input(argc, argv, &stack_a)) // parse_input will validate and fill stack_a
+	if (!parse_input(argc, argv, &stack_a)) 
+	// parse_input will validate and fill stack_a
 	{
 		write(2, "Error\n", 6);
 		return(1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:40:58 by kai               #+#    #+#             */
-/*   Updated: 2026/06/10 20:41:15 by kai              ###   ########.fr       */
+/*   Updated: 2026/06/13 00:55:50 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	error_exit(void)
 {
-    write(2, "Error\n", 6);
-    exit(EXIT_FAILURE);
+	write(2, "Error\n", 6);
+	exit(EXIT_FAILURE);
 }

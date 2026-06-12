@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:10:53 by kai               #+#    #+#             */
-/*   Updated: 2026/06/10 21:01:10 by kai              ###   ########.fr       */
+/*   Updated: 2026/06/13 01:01:39 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,14 @@ void	lst_add_back(t_node **stack, t_node *new_node)
 
 	if (!stack || !new_node)
 		return ;
-	// Scenario 1: The stack is empty
 	if (*stack == NULL)
 	{
 		*stack = new_node;
 		return ;
 	}
-	// Scenario 2: Find the current tail of the list
 	tail = *stack;
 	while (tail->next != NULL)
 		tail = tail->next;
-	// Wire the tail and the new node together
 	tail->next = new_node;
 	new_node->prev = tail;
 }
@@ -61,7 +58,7 @@ void	free_stack(t_node **stack)
 	cur = *stack;
 	while (cur)
 	{
-		temp = cur->next; 
+		temp = cur->next;
 		free(cur);
 		cur = temp;
 	}

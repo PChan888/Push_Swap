@@ -116,8 +116,9 @@ static int	count_eligible(t_node *stack_a, int chunk_hi)
 
 void	chunked_push_phase(t_node **stack_a, t_node **stack_b, int n_to_move)
 {
-	int	chunk_size;
-	int	chunk_hi;
+	int		chunk_size;
+	int		chunk_hi;
+	t_node	*tmp;
 
 	chunk_size = 1;
 	while (chunk_size * chunk_size < n_to_move)
@@ -136,7 +137,7 @@ void	chunked_push_phase(t_node **stack_a, t_node **stack_b, int n_to_move)
 		** result - everything else in push_best_to_b is unchanged.
 		*/
 		{
-			t_node	*tmp = *stack_a;
+			tmp = *stack_a;
 			while (tmp)
 			{
 				if (tmp->rank >= chunk_hi)

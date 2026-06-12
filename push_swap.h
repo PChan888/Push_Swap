@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 04:21:26 by kaichan           #+#    #+#             */
-/*   Updated: 2026/06/10 20:58:28 by kai              ###   ########.fr       */
+/*   Updated: 2026/06/13 01:00:27 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_node	*find_max(t_node *stack);
 
 /* turk_b_utils.c */
 void	cost_analysis_b(t_node *stack_a, t_node *stack_b);
-t_node	*find_min(t_node *stack);
+void	find_min(t_node *stack_a, int *min_val, int *min_pos);
 t_node	*get_min_cost_node(t_node *stack);
 
 /* turk_exec.c */

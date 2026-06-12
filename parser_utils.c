@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 15:50:57 by kai               #+#    #+#             */
-/*   Updated: 2026/06/10 19:14:46 by kai              ###   ########.fr       */
+/*   Updated: 2026/06/13 01:03:21 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,32 +62,33 @@ void	mixed_fill(char **flat_array, char **argv, int argc)
 	flat_array[k] = NULL;
 }
 
-/*Helper 3: Validates if a string is a properly formatted integer within range */
-int is_valid_int(const char *str)
+/*Helper 3: Validates if a string is a properly formatted 
+integer within range */
+int	is_valid_int(const char *str)
 {
-    int         i;
-    long long   result;
-    int         sign;
+	int			i;
+	long long	result;
+	int			sign;
 
-    i = 0;
-    result = 0;
-    sign = 1;
+	i = 0;
+	result = 0;
+	sign = 1;
 	if (str[i] == '-')
-        sign = -1;
-    if (str[i] == '-' || str[i] == '+')
-        i++;
-    if (str[i] == '\0')
-        return (0);
-    while (str[i])
-    {
-        if (str[i] < '0' || str[i] > '9')
-            return (0);
-        result = result * 10 + (str[i++] - '0');
-        if ((sign == 1 && result > INT_MAX) 
+		sign = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (str[i] == '\0')
+		return (0);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		result = result * 10 + (str[i++] - '0');
+		if ((sign == 1 && result > INT_MAX)
 			|| (sign == -1 && (-result) < INT_MIN))
-            return (0);
-    }
-    return (1);
+			return (0);
+	}
+	return (1);
 }
 
 /* Helper 4: Frees the temporary char** string array layout */

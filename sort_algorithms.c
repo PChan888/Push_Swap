@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_algorithms.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:10:14 by kai               #+#    #+#             */
-/*   Updated: 2026/06/10 20:35:48 by kai              ###   ########.fr       */
+/*   Updated: 2026/06/13 01:02:23 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,16 @@ void	sort_stack(t_node **stack_a, t_node **stack_b)
 	int	size;
 
 	size = get_stack_size(*stack_a);
-	
-	// Case 1: Already sorted or nothing to sort
 	if (size <= 1 || is_sorted(*stack_a))
 		return ;
-	
-	// Case 2: Tiny Sort (2 numbers)
 	if (size == 2)
 		sa(stack_a, 1);
-	
-	// Case 3: Small Sort (3 numbers)
 	else if (size == 3)
 		sort_three(stack_a);
-	
-	// Case 4: Medium Sort (4 to 5 numbers)
 	else if (size <= 5)
 		sort_five(stack_a, stack_b);
-	
-	// Case 5: Large Sort (6 to 500+ numbers)
 	else
-		large_sort(stack_a, stack_b); // This is where your Butterfly Sort will go!
+		large_sort(stack_a, stack_b);
 }
 
 /*
@@ -75,27 +65,33 @@ void	sort_three(t_node **stack_a)
 ** Helper function for sort_five to find the position of the 
 ** smallest number and rotate it to the top of Stack A.
 */
-static void	push_min_to_b(t_node **stack_a, t_node **stack_b)
+static void	find_min(t_node *stack_a, int *min_val, int *min_pos)
 {
-	t_node	*tmp;
-	int		min_val;
-	int		min_pos;
 	int		pos;
+	t_node	*tmp;
 
-	tmp = *stack_a;
-	min_val = tmp->value;
+	tmp = stack_a;
+	*min_val = tmp->value;
+	*min_pos = 0;
 	pos = 0;
-	min_pos = 0;
 	while (tmp)
 	{
-		if (tmp->value < min_val)
+		if (tmp->value < *min_val)
 		{
-			min_val = tmp->value;
-			min_pos = pos;
+			*min_val = tmp->value;
+			*min_pos = pos;
 		}
 		pos++;
 		tmp = tmp->next;
 	}
+}
+
+void	push_min_to_b(t_node **stack_a, t_node **stack_b)
+{
+	int	min_val;
+	int	min_pos;
+
+	find_min(*stack_a, &min_val, &min_pos);
 	while ((*stack_a)->value != min_val)
 	{
 		if (min_pos <= get_stack_size(*stack_a) / 2)
@@ -105,6 +101,36 @@ static void	push_min_to_b(t_node **stack_a, t_node **stack_b)
 	}
 	pb(stack_a, stack_b, 1);
 }
+// static void	push_min_to_b(t_node **stack_a, t_node **stack_b)
+// {
+// 	t_node	*tmp;
+// 	int		min_val;
+// 	int		min_pos;
+// 	int		pos;
+
+// 	tmp = *stack_a;
+// 	min_val = tmp->value;
+// 	pos = 0;
+// 	min_pos = 0;
+// 	while (tmp)
+// 	{
+// 		if (tmp->value < min_val)
+// 		{
+// 			min_val = tmp->value;
+// 			min_pos = pos;
+// 		}
+// 		pos++;
+// 		tmp = tmp->next;
+// 	}
+// 	while ((*stack_a)->value != min_val)
+// 	{
+// 		if (min_pos <= get_stack_size(*stack_a) / 2)
+// 			ra(stack_a, 1);
+// 		else
+// 			rra(stack_a, 1);
+// 	}
+// 	pb(stack_a, stack_b, 1);
+// }
 
 /*
 ** Optimized shortcut for 4 to 5 numbers to secure "Kudos" points.
@@ -129,4 +155,3 @@ void	sort_five(t_node **stack_a, t_node **stack_b)
 ** in large_sort.c, using the cost-analysis helpers from turk_utils.c,
 ** turk_b_utils.c and turk_exec.c.
 */
-
