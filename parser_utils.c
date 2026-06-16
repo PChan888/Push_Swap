@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 15:50:57 by kai               #+#    #+#             */
-/*   Updated: 2026/06/13 01:03:21 by kaichan          ###   ########.fr       */
+/*   Updated: 2026/06/16 01:38:33 by kai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	mixed_fill(char **flat_array, char **argv, int argc)
 }
 
 /*Helper 3: Validates if a string is a properly formatted 
-integer within range */
+integer within range, sign used to 2147483648 and -2147483648 */
 int	is_valid_int(const char *str)
 {
 	int			i;

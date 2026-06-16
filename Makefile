@@ -32,7 +32,6 @@ SRCS = main.c \
 	op_rev_rotate.c \
 	sort_algorithms.c \
 	sort_utils.c \
-	large_sort.c \
 	turk_utils.c \
 	turk_b_utils.c \
 	turk_exec.c

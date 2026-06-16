@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:10:53 by kai               #+#    #+#             */
-/*   Updated: 2026/06/13 01:01:39 by kaichan          ###   ########.fr       */
+/*   Updated: 2026/06/17 02:05:15 by kai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// Just creates a new node.
 t_node	*lst_new(int value)
 {
 	t_node	*new_node;
@@ -22,13 +23,14 @@ t_node	*lst_new(int value)
 	new_node->value = value;
 	new_node->index = -1;
 	new_node->push_cost = INT_MAX;
-	new_node->above_median = 0;
+	new_node->above_mid = 0;
 	new_node->target_node = NULL;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);
 }
 
+// Adds a new node to the end of the stack. 
 void	lst_add_back(t_node **stack, t_node *new_node)
 {
 	t_node	*tail;
@@ -47,7 +49,7 @@ void	lst_add_back(t_node **stack, t_node *new_node)
 	new_node->prev = tail;
 }
 
-/* Helper 5: Safely cleans up and frees all nodes in linked list */
+// Safely cleans up and frees all nodes in linked list
 void	free_stack(t_node **stack)
 {
 	t_node	*cur;

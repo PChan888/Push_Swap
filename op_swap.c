@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   op_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:47:23 by kai               #+#    #+#             */
-/*   Updated: 2026/06/13 01:01:17 by kaichan          ###   ########.fr       */
+/*   Updated: 2026/06/17 02:40:23 by kai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
- * @brief Safely swaps the first two nodes of a doubly linked list.
- * * Wireframe changes handled:
+ * Safely swaps the first two nodes of a doubly linked list.
  * 1. Disconnects second node from third node (if it exists).
  * 2. Swaps next/prev links between first and second nodes.
  * 3. Updates the new first node's prev pointer to NULL.
@@ -39,32 +38,29 @@ static void	swap_nodes(t_node **stack)
 }
 
 /**
- * @brief Swaps the first 2 elements at the top of stack a.
+ * Swaps the first 2 elements at the top of stack a.
  */
-void	sa(t_node **stack_a, int print_flag)
+void	sa(t_node **stack_a)
 {
 	swap_nodes(stack_a);
-	if (print_flag)
-		write(1, "sa\n", 3);
+	write(1, "sa\n", 3);
 }
 
 /**
- * @brief Swaps the first 2 elements at the top of stack b.
+ * Swaps the first 2 elements at the top of stack b.
  */
-void	sb(t_node **stack_b, int print_flag)
+void	sb(t_node **stack_b)
 {
 	swap_nodes(stack_b);
-	if (print_flag)
-		write(1, "sb\n", 3);
+	write(1, "sb\n", 3);
 }
 
 /**
- * @brief sa and sb at the same time.
+ * sa and sb at the same time.
  */
-void	ss(t_node **stack_a, t_node **stack_b, int print_flag)
+void	ss(t_node **stack_a, t_node **stack_b)
 {
 	swap_nodes(stack_a);
 	swap_nodes(stack_b);
-	if (print_flag)
-		write(1, "ss\n", 3);
+	write(1, "ss\n", 3);
 }

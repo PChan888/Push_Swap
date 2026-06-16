@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/03 00:21:10 by kaichan           #+#    #+#             */
-/*   Updated: 2026/06/13 01:03:45 by kaichan          ###   ########.fr       */
+/*   Updated: 2026/06/16 01:28:50 by kai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return(1);
 	}
-
-
 }
 */
 
+// make array first, validate and dup check, before build stack.
+// free array then sort at the end free everything before exiting program.
 int	main(int argc, char **argv)
 {
 	t_node	*stack_a;

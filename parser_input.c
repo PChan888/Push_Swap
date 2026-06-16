@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/06 02:01:36 by kai               #+#    #+#             */
-/*   Updated: 2026/06/13 00:53:04 by kaichan          ###   ########.fr       */
+/*   Updated: 2026/06/17 02:47:11 by kai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ char	**input_split_and_flatten(int argc, char **argv)
 	return (flat_array);
 }
 
-//(rewrite later)
+// like wdmatch so we use j < i when i increments we reset j to zero
+// check upto but not equal to i to verify all previous index for dups
 int	check_array_and_dup(char **flat_array)
 {
 	int	i;
@@ -86,6 +87,8 @@ int	check_array_and_dup(char **flat_array)
 	return (1);
 }
 
+// builds first node then cycles appending each new node
+// to the end of the list
 t_node	*build_doubly_stack(char **flat_array)
 {
 	t_node	*stack_a;

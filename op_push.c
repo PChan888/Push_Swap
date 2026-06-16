@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   op_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:49:29 by kai               #+#    #+#             */
-/*   Updated: 2026/06/13 01:01:28 by kaichan          ###   ########.fr       */
+/*   Updated: 2026/06/16 06:46:20 by kai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
- * @brief Pops the top node from src and pushes it to the top of dest.
+ * Pops the top node from src and pushes it to the top of dest.
  */
 static void	push_node(t_node **dest, t_node **src)
 {
@@ -31,16 +31,14 @@ static void	push_node(t_node **dest, t_node **src)
 	*dest = node_to_move;
 }
 
-void	pa(t_node **stack_a, t_node **stack_b, int print_flag)
+void	pa(t_node **stack_a, t_node **stack_b)
 {
 	push_node(stack_a, stack_b);
-	if (print_flag)
-		write(1, "pa\n", 3);
+	write(1, "pa\n", 3);
 }
 
-void	pb(t_node **stack_a, t_node **stack_b, int print_flag)
+void	pb(t_node **stack_a, t_node **stack_b)
 {
 	push_node(stack_b, stack_a);
-	if (print_flag)
-		write(1, "pb\n", 3);
+	write(1, "pb\n", 3);
 }

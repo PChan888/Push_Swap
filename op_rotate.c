@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   op_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:48:28 by kai               #+#    #+#             */
-/*   Updated: 2026/06/13 01:01:21 by kaichan          ###   ########.fr       */
+/*   Updated: 2026/06/16 06:46:38 by kai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
- * @brief Shifts all elements up by 1 position (First becomes Last).
+ * Shifts all elements up by 1 position (First becomes Last).
  */
 static void	rotate_nodes(t_node **stack)
 {
@@ -33,24 +33,21 @@ static void	rotate_nodes(t_node **stack)
 	first->next = NULL;
 }
 
-void	ra(t_node **stack_a, int print_flag)
+void	ra(t_node **stack_a)
 {
 	rotate_nodes(stack_a);
-	if (print_flag)
-		write(1, "ra\n", 3);
+	write(1, "ra\n", 3);
 }
 
-void	rb(t_node **stack_b, int print_flag)
+void	rb(t_node **stack_b)
 {
 	rotate_nodes(stack_b);
-	if (print_flag)
-		write(1, "rb\n", 3);
+	write(1, "rb\n", 3);
 }
 
-void	rr(t_node **stack_a, t_node **stack_b, int print_flag)
+void	rr(t_node **stack_a, t_node **stack_b)
 {
 	rotate_nodes(stack_a);
 	rotate_nodes(stack_b);
-	if (print_flag)
-		write(1, "rr\n", 3);
+	write(1, "rr\n", 3);
 }

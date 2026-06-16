@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   turk_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 00:00:00 by kai               #+#    #+#             */
-/*   Updated: 2026/06/13 00:58:45 by kaichan          ###   ########.fr       */
+/*   Updated: 2026/06/17 02:49:44 by kai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
-** Returns the signed rotation distance for a node at "index" in a
-** stack of size "len": positive means "index" rotations up (ra/rb),
-** negative means abs(value) rotations down (rra/rrb).
-*/
+// -counting rotations to top for both stacks-
+// by indexing to first or second half of stack size
+// if index is less than half of stack size, return index (rotate up)
+// if index is greater than half of stack size, return negative (rotate down)
+// size(len) - index is the distance to rotate down
+// midpoint is always rotated up
 static int	rot_count(int index, int len)
 {
 	if (index <= len / 2)
@@ -24,26 +25,28 @@ static int	rot_count(int index, int len)
 	return (-(len - index));
 }
 
+// applies individual rotations for stack a or b, depending on flag.
 static void	apply_rotation(t_node **stack, int *rot, int is_b)
 {
 	if (*rot > 0)
 	{
 		if (is_b)
-			rb(stack, 1);
+			rb(stack);
 		else
-			ra(stack, 1);
+			ra(stack);
 		(*rot)--;
 	}
 	else
 	{
 		if (is_b)
-			rrb(stack, 1);
+			rrb(stack);
 		else
-			rra(stack, 1);
+			rra(stack);
 		(*rot)++;
 	}
 }
 
+// determines rr or rrr, then applies remaining rotations for a and b.
 static void	do_rotations(t_node **stack_a, t_node **stack_b,
 				int rot_a, int rot_b)
 {
@@ -51,13 +54,13 @@ static void	do_rotations(t_node **stack_a, t_node **stack_b,
 	{
 		if (rot_a > 0)
 		{
-			rr(stack_a, stack_b, 1);
+			rr(stack_a, stack_b);
 			rot_a--;
 			rot_b--;
 		}
 		else
 		{
-			rrr(stack_a, stack_b, 1);
+			rrr(stack_a, stack_b);
 			rot_a++;
 			rot_b++;
 		}
@@ -68,6 +71,10 @@ static void	do_rotations(t_node **stack_a, t_node **stack_b,
 		apply_rotation(stack_b, &rot_b, 1);
 }
 
+// used best node to determine the best push_cost and its target node,
+// then calculates the rotations needed to bring both nodes to the top
+// use rotations to bring both nodes to the top,
+// then push the best node to the other stack.
 void	push_best_to_b(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*best;
@@ -78,9 +85,13 @@ void	push_best_to_b(t_node **stack_a, t_node **stack_b)
 	rot_a = rot_count(best->index, get_stack_size(*stack_a));
 	rot_b = rot_count(best->target_node->index, get_stack_size(*stack_b));
 	do_rotations(stack_a, stack_b, rot_a, rot_b);
-	pb(stack_a, stack_b, 1);
+	pb(stack_a, stack_b);
 }
 
+// used best node to determine the best push_cost and its target node,
+// then calculates the rotations needed to bring both nodes to the top
+// use rotations to bring both nodes to the top,
+// then push the best node to the other stack.
 void	push_best_to_a(t_node **stack_a, t_node **stack_b)
 {
 	t_node	*best;
@@ -91,5 +102,5 @@ void	push_best_to_a(t_node **stack_a, t_node **stack_b)
 	rot_b = rot_count(best->index, get_stack_size(*stack_b));
 	rot_a = rot_count(best->target_node->index, get_stack_size(*stack_a));
 	do_rotations(stack_a, stack_b, rot_a, rot_b);
-	pa(stack_a, stack_b, 1);
+	pa(stack_a, stack_b);
 }
