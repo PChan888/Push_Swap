@@ -6,7 +6,7 @@
 /*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 21:57:56 by kai               #+#    #+#             */
-/*   Updated: 2026/06/17 02:26:01 by kai              ###   ########.fr       */
+/*   Updated: 2026/06/17 08:22:23 by kai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,34 @@ static void	set_target_a(t_node *stack_a, t_node *stack_b)
 	}
 }
 
-// calculating push cost if above default if below midpoint
-// then subtrackng the index by stack size to get cost of rr or rrr
-// if the target node is above mid then we add the index of target
-// node to cost if below mid we subtract the index from stack size
+static void	set_costs_a(t_node *stack_a, int len_a, int len_b)
+{
+	int	rot_a;
+	int	rot_b;
+
+	while (stack_a)
+	{
+		if (stack_a->above_mid)
+			rot_a = stack_a->index;
+		else
+			rot_a = len_a - stack_a->index;
+		if (stack_a->target_node->above_mid)
+			rot_b = stack_a->target_node->index;
+		else
+			rot_b = len_b - stack_a->target_node->index;
+		if (stack_a->above_mid == stack_a->target_node->above_mid)
+		{
+			if (rot_a > rot_b)
+				stack_a->push_cost = rot_a;
+			else
+				stack_a->push_cost = rot_b;
+		}
+		else
+			stack_a->push_cost = rot_a + rot_b;
+		stack_a = stack_a->next;
+	}
+}
+
 void	cost_analysis_a(t_node *stack_a, t_node *stack_b)
 {
 	int	len_a;
@@ -100,15 +124,32 @@ void	cost_analysis_a(t_node *stack_a, t_node *stack_b)
 	current_index(stack_a);
 	current_index(stack_b);
 	set_target_a(stack_a, stack_b);
-	while (stack_a)
-	{
-		stack_a->push_cost = stack_a->index;
-		if (!stack_a->above_mid)
-			stack_a->push_cost = len_a - (stack_a->index);
-		if (stack_a->target_node->above_mid)
-			stack_a->push_cost += stack_a->target_node->index;
-		else
-			stack_a->push_cost += len_b - (stack_a->target_node->index);
-		stack_a = stack_a->next;
-	}
+	set_costs_a(stack_a, len_a, len_b);
 }
+
+// // calculating push cost if above default if below midpoint
+// // then subtrackng the index by stack size to get cost of rr or rrr
+// // if the target node is above mid then we add the index of target
+// // node to cost if below mid we subtract the index from stack size
+// void	cost_analysis_a(t_node *stack_a, t_node *stack_b)
+// {
+// 	int	len_a;
+// 	int	len_b;
+//
+// 	len_a = get_stack_size(stack_a);
+// 	len_b = get_stack_size(stack_b);
+// 	current_index(stack_a);
+// 	current_index(stack_b);
+// 	set_target_a(stack_a, stack_b);
+// 	while (stack_a)
+// 	{
+// 		stack_a->push_cost = stack_a->index;
+// 		if (!stack_a->above_mid)
+// 			stack_a->push_cost = len_a - (stack_a->index);
+// 		if (stack_a->target_node->above_mid)
+// 			stack_a->push_cost += stack_a->target_node->index;
+// 		else
+// 			stack_a->push_cost += len_b - (stack_a->target_node->index);
+// 		stack_a = stack_a->next;
+// 	}
+// }

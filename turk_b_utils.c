@@ -6,7 +6,7 @@
 /*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 00:00:00 by kai               #+#    #+#             */
-/*   Updated: 2026/06/17 02:33:35 by kai              ###   ########.fr       */
+/*   Updated: 2026/06/17 08:18:05 by kai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,38 @@ static void	set_target_b(t_node *stack_a, t_node *stack_b)
 	}
 }
 
+// checks both stack if above or below mid and it's cost
+// if both are above mid or both are below mid
+// push_cost = to the bigger cost of the two
+// otherwise, push_cost = sum of both costs
+static void	set_costs_b(t_node *stack_b, int len_a, int len_b)
+{
+	int	rot_a;
+	int	rot_b;
+
+	while (stack_b)
+	{
+		if (stack_b->above_mid)
+			rot_b = stack_b->index;
+		else
+			rot_b = len_b - stack_b->index;
+		if (stack_b->target_node->above_mid)
+			rot_a = stack_b->target_node->index;
+		else
+			rot_a = len_a - stack_b->target_node->index;
+		if (stack_b->above_mid == stack_b->target_node->above_mid)
+		{
+			if (rot_a > rot_b)
+				stack_b->push_cost = rot_a;
+			else
+				stack_b->push_cost = rot_b;
+		}
+		else
+			stack_b->push_cost = rot_a + rot_b;
+		stack_b = stack_b->next;
+	}
+}
+
 // calculates push cost for each node in b to its target in a
 void	cost_analysis_b(t_node *stack_a, t_node *stack_b)
 {
@@ -93,15 +125,30 @@ void	cost_analysis_b(t_node *stack_a, t_node *stack_b)
 	current_index(stack_a);
 	current_index(stack_b);
 	set_target_b(stack_a, stack_b);
-	while (stack_b)
-	{
-		stack_b->push_cost = stack_b->index;
-		if (!stack_b->above_mid)
-			stack_b->push_cost = len_b - (stack_b->index);
-		if (stack_b->target_node->above_mid)
-			stack_b->push_cost += stack_b->target_node->index;
-		else
-			stack_b->push_cost += len_a - (stack_b->target_node->index);
-		stack_b = stack_b->next;
-	}
+	set_costs_b(stack_b, len_a, len_b);
 }
+
+// calculates push cost for each node in b to its target in a
+// void	cost_analysis_b(t_node *stack_a, t_node *stack_b)
+// {
+// 	int	len_a;
+// 	int	len_b;
+//
+// 	len_a = get_stack_size(stack_a);
+// 	len_b = get_stack_size(stack_b);
+// 	current_index(stack_a);
+// 	current_index(stack_b);
+// 	set_target_b(stack_a, stack_b);
+// 	while (stack_b)
+// 	{
+// 		stack_b->push_cost = stack_b->index;
+// 		if (!stack_b->above_mid)
+// 			stack_b->push_cost = len_b - (stack_b->index);
+// 		if (stack_b->target_node->above_mid)
+// 			stack_b->push_cost += stack_b->target_node->index;
+// 		else
+// 			stack_b->push_cost += len_a - (stack_b->target_node->index);
+// 		stack_b = stack_b->next;
+// 	}
+// }
+//
