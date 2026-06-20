@@ -6,7 +6,7 @@
 /*   By: kai <kai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 20:10:14 by kai               #+#    #+#             */
-/*   Updated: 2026/06/16 06:34:20 by kai              ###   ########.fr       */
+/*   Updated: 2026/06/20 14:09:40 by kai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ void	sort_stack(t_node **stack_a, t_node **stack_b)
 		large_sort(stack_a, stack_b);
 }
 
-/*
-** Rotates stack_a (cheapest direction) so that its smallest value
-** ends up on top, leaving the result fully sorted.
-*/
+// Rotates stack_a (cheapest direction) so that its smallest value
+// ends up on top, leaving the result fully sorted.
 void	finalize_rotation(t_node **stack_a)
 {
 	t_node	*min;
@@ -55,11 +53,9 @@ void	finalize_rotation(t_node **stack_a)
 	}
 }
 
-/*
-** Hardcoded puzzle solver for exactly 3 numbers.
-** Since there are only 5 unsorted configurations, we can 
-** always solve this in a maximum of 2 moves.
-*/
+// Hardcoded puzzle solver for exactly 3 numbers.
+// Since there are only 5 unsorted configurations, we can 
+// always solve this in a maximum of 2 moves.
 void	sort_three(t_node **stack_a)
 {
 	int	top;
@@ -87,11 +83,9 @@ void	sort_three(t_node **stack_a)
 		rra(stack_a);
 }
 
-/*
-** Optimized shortcut for 4 to 5 numbers
-** It safely moves the smallest elements to b until only 3 are left,
-** calls sort_three, then pops b straight back.
-*/
+// Optimized shortcut for 4 to 5 numbers
+// It safely moves the smallest elements to b until only 3 are left,
+// calls sort_three, then pops b straight back.
 void	sort_five(t_node **stack_a, t_node **stack_b)
 {
 	int	size;
@@ -105,13 +99,11 @@ void	sort_five(t_node **stack_a, t_node **stack_b)
 		pa(stack_a, stack_b);
 }
 
-/*
-** The Brain of the Turk Sort for stacks larger than 5.
-** Phase 1: repeatedly send the cheapest element of A to its best
-** spot in B, until only 3 remain in A, then sort those with sort_three.
-** Phase 2: repeatedly bring back the cheapest element of B to its
-** best spot in A, then do a final rotation to fully sort A.
-*/
+// The Brain of the Turk Sort for stacks larger than 5.
+// Phase 1: repeatedly send the cheapest element of A to its best
+// spot in B, until only 3 remain in A, then sort those with sort_three.
+// Phase 2: repeatedly bring back the cheapest element of B to its
+// best spot in A, then do a final rotation to fully sort A.
 void	large_sort(t_node **stack_a, t_node **stack_b)
 {
 	pb(stack_a, stack_b);
