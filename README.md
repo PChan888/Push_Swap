@@ -66,13 +66,15 @@ make re     # Full recompile
 
 ```
 $ ./push_swap 5 2 8 1 3
-pb
+rra
+rra
 pb
 ra
-sa
+ra
+pb
+ra
 pa
 pa
-rra
 ```
 
 ### Error Handling
@@ -93,14 +95,14 @@ $ ./push_swap
 
 ## References
 
-<!-- REF: Oceano's push_swap video guide — https://www.youtube.com/watch?v=OaG81sDEpVk -->
-<!-- REF: Medium article(s) — https://medium.com/@ayogun/push-swap-c1f5d2d41e97 -->
-<!-- REF: Medium article(s) — https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a -->
-<!-- REF: Medium article(s) — https://m4nnb3ll.medium.com/my-journey-to-find-a-good-sorting-algorithm-for-the-push-swap-42-project-4a18bc38b474 -->
-<!-- REF: Medium article(s) — https://pure-forest.medium.com/push-swap-turk-algorithm-explained-in-6-steps-4c6650a458c0 -->
-<!-- REF: Medium article(s) — https://medium.com/@ulysse.gks/push-swap-in-less-than-4200-operations-c292f034f6c0 -->
-<!-- REF: Gitbook resource — https://42-cursus.gitbook.io/guide/2-rank-02/push_swap -->
-<!-- REF: Github resource — https://github.com/alx-sch/push_swap -->
+- [Oceano's push_swap video guide](https://www.youtube.com/watch?v=OaG81sDEpVk)
+- [Push_swap (Medium)](https://medium.com/@ayogun/push-swap-c1f5d2d41e97)
+- [Push_swap: the least amount of moves with two stacks (Medium)](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a)
+- [My journey to find a good sorting algorithm for the push_swap 42 project (Medium)](https://m4nnb3ll.medium.com/my-journey-to-find-a-good-sorting-algorithm-for-the-push-swap-42-project-4a18bc38b474)
+- [Push_swap: Turk algorithm explained in 6 steps (Medium)](https://pure-forest.medium.com/push-swap-turk-algorithm-explained-in-6-steps-4c6650a458c0)
+- [Push_swap in less than 4200 operations (Medium)](https://medium.com/@ulysse.gks/push-swap-in-less-than-4200-operations-c292f034f6c0)
+- [42 Cursus Guide: push_swap](https://42-cursus.gitbook.io/guide/2-rank-02/push_swap)
+- [alx-sch/push_swap (GitHub)](https://github.com/alx-sch/push_swap)
 
 ## AI Assistance
 
